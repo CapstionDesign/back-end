@@ -31,9 +31,11 @@
 
 ## ⭐️ 기술 스택
 
-- Language: 
+- Language: Java
 
-- Framework And Libraries: 
+- Framework And Libraries: Spring, Spring Boot, Spring Security
+
+- Database: MySQL
 
 ## 💻 팀원 소개
 
