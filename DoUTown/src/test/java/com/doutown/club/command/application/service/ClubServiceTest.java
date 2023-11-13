@@ -1,7 +1,7 @@
-package com.doutown.member.command.application.service;
+package com.doutown.club.command.application.service;
 
-import com.doutown.member.command.domain.aggregate.root.Member;
-import com.doutown.member.command.domain.repository.MemberRepository;
+import com.doutown.club.command.domain.aggregate.root.Club;
+import com.doutown.club.command.domain.repository.ClubRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -17,25 +17,26 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class MemberServiceTest {
+public class ClubServiceTest {
 
     @Autowired
-    MemberService memberService;
+    ClubService clubService;
 
     @Autowired
-    MemberRepository memberRepository;
+    ClubRepository clubRepository;
 
     @Autowired
     EntityManager em;
 
     @Test
-    public void createMember() throws Exception {
-        Member member = new Member();
-        member.setMemberName("CHO");
+    public void createClub() throws  Exception {
 
-        Long saveNo = memberService.join(member);
+        Club club = new Club();
+        club.setClubName("맛멋");
 
-        Assertions.assertEquals(member, memberRepository.findOne(saveNo));
+        Long createNo = clubService.create(club);
+
+        Assertions.assertEquals(club, clubRepository.findOne(createNo));
     }
 
 }

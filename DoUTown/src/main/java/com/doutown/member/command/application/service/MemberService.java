@@ -20,12 +20,14 @@ public class MemberService {
 
         validateDuplicateMember(member);
         memberRepository.save(member);
-        return member.getMemberNo();
 
+        return member.getMemberNo();
     }
 
     private void validateDuplicateMember(Member member) {
+
         List<Member> findMembers = memberRepository.findByName(member.getMemberName());
+
         if(!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
