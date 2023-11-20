@@ -1,5 +1,7 @@
 package com.doutown.club.command.application.service;
 
+import com.doutown.club.command.application.dto.RegistNewClubRequestDTO;
+import com.doutown.club.command.domain.aggregate.enumtype.ClubStatus;
 import com.doutown.club.command.domain.aggregate.root.Club;
 import com.doutown.club.command.domain.repository.ClubRepository;
 import org.junit.Test;
@@ -10,33 +12,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class ClubServiceTest {
+public class RegistNewClubServiceTest {
 
     @Autowired
-    ClubService clubService;
+    RegistNewClubService service;
 
     @Autowired
-    ClubRepository clubRepository;
-
-    @Autowired
-    EntityManager em;
+    ClubRepository repository;
 
     @Test
-    public void createClub() throws  Exception {
+    public void registNewClub() throws Exception {
 
-        Club club = new Club();
-        club.setClubName("맛멋");
+        RegistNewClubRequestDTO club = new RegistNewClubRequestDTO("맛멋");
 
-        Long createNo = clubService.create(club);
+        Long createNo = service.registNewClub(club);
 
-        Assertions.assertEquals(club, clubRepository.findOne(createNo));
+        Assertions.assertEquals(club, repository.findById(createNo));
+
     }
 
 }
