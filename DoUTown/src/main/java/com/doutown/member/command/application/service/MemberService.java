@@ -15,6 +15,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    //회원 생성
     @Transactional
     public Long join(Member member) {
 
@@ -24,6 +25,7 @@ public class MemberService {
         return member.getMemberNo();
     }
 
+    //회원 중복 체크
     private void validateDuplicateMember(Member member) {
 
         List<Member> findMembers = memberRepository.findByName(member.getMemberName());
@@ -33,10 +35,12 @@ public class MemberService {
         }
     }
 
+    //회원 전체 조회
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
+    //회원 한명에 대한 정보 조회
     public Member findOne(Long memberNo) {
         return memberRepository.findOne(memberNo);
     }
