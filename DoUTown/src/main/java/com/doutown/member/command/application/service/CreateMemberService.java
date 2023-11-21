@@ -1,5 +1,6 @@
 package com.doutown.member.command.application.service;
 
+import com.doutown.member.command.application.dto.CreateMemberDTO;
 import com.doutown.member.command.domain.aggregate.root.Member;
 import com.doutown.member.command.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,13 +12,15 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberService {
+public class CreateMemberService {
 
     private final MemberRepository memberRepository;
 
     //회원 생성
     @Transactional
-    public Long join(Member member) {
+    public Long join(CreateMemberDTO dto) {
+
+        Member member = new Member(dto.getMemberName(),dto.getMemberHak(),dto.getEmail());
 
         validateDuplicateMember(member);
         memberRepository.save(member);

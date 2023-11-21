@@ -27,13 +27,14 @@ public class Member {
     @Column
     private String regiDate;
 
-    public Member() {
-    }
-
     public Member(String memberName, String memberHak, String email) {
         this.memberName = memberName;
         this.memberHak = memberHak;
         this.email = email;
+    }
+
+    public Member() {
+
     }
 
     public Long getMemberNo() {
@@ -58,30 +59,6 @@ public class Member {
 
     public String getRegiDate() {
         return regiDate;
-    }
-
-    public void setMemberNo(Long memberNo) {
-        this.memberNo = memberNo;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
-    public void setMemberHak(String memberHak) {
-        this.memberHak = memberHak;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setStatus(MemberStatus status) {
-        this.status = status;
-    }
-
-    public void setRegiDate(String regiDate) {
-        this.regiDate = regiDate;
     }
 
     @Override
