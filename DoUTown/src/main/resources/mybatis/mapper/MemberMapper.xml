@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doutown.member.dao.MemberMapper">
+
+    <insert id="save" parameterType="memberDto" useGeneratedKeys="true" keyProperty="memberNo">
+            INSERT INTO member(MEMBER_NAME, MEMBER_GRADE, STUDENT_STATUS, REGIST_DATE)
+            VALUES(#{memberName}, DEFAULT, DEFAULT, CURRENT_TIMESTAMP)
+    </insert>
+
+
+</mapper>
