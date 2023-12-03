@@ -30,6 +30,7 @@ public class MybatisConfig {
             factoryBean.setTypeAliasesPackage("com.doutown");
             factoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/**/*.xml"));
             factory = factoryBean.getObject();
+            System.out.println("마이바티스 들어옴");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

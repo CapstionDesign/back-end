@@ -4,7 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 import java.sql.Date;
 
-@Alias("memberDto")
+@Alias("MemberDto")
 public class MemberDTO {
 
     private Long memberNo;
