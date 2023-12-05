@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doutown.club.dao.ClubMapper">
+
+    <resultMap id="ClubResult" type="ClubDTO">
+        <id property="clubNo" column="CLUB_NO"/>
+        <result property="openDate" column="OPEN_DATE"/>
+        <result property="clubName" column="CLUB_NAME"/>
+        <result property="clubStatus" column="CLUB_STATUS"/>
+    </resultMap>
+
+</mapper>

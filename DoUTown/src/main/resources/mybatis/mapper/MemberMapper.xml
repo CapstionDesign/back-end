@@ -11,6 +11,16 @@
         <result property="studentStatus" column="STUDENT_STATUS"/>
         <result property="registDate" column="REGIST_DATE"/>
         <result property="studentNo" column="STUDENT_NO"/>
+        <!-- student 테이블이랑 조인해야함 -->
+        <!--
+        <collection property="studentNo" ofType="StudentDTO">
+            <id property="studentNo" column="STUDENT_NO"/>
+            <result property="studentName" column="STUDENT_NAME"/>
+            <result property="hakNumber" column="HAK_NUMBER"/>
+            <result property="memberNo" column="MEMBER_NO"/>
+            <result property="DepartmentCode" column="DEPARTMENT_CODE"/>
+        </collection>
+        -->
     </resultMap>
 
     <select id="find" resultType="MemberDTO" resultMap="MemberResult">

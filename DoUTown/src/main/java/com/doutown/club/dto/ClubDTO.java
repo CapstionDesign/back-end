@@ -1,10 +1,13 @@
 package com.doutown.club.dto;
 
+import org.apache.ibatis.type.Alias;
+
 import java.sql.Date;
 
+@Alias("ClubDTO")
 public class ClubDTO {
 
-    private Long ClubNo;
+    private Long clubNo;
     private Date openDate;
     private String clubName;
     private String clubStatus;
@@ -13,18 +16,18 @@ public class ClubDTO {
     }
 
     public ClubDTO(Long clubNo, Date openDate, String clubName, String clubStatus) {
-        ClubNo = clubNo;
+        this.clubNo = clubNo;
         this.openDate = openDate;
         this.clubName = clubName;
         this.clubStatus = clubStatus;
     }
 
     public Long getClubNo() {
-        return ClubNo;
+        return clubNo;
     }
 
     public void setClubNo(Long clubNo) {
-        ClubNo = clubNo;
+        this.clubNo = clubNo;
     }
 
     public Date getOpenDate() {
@@ -54,7 +57,7 @@ public class ClubDTO {
     @Override
     public String toString() {
         return "ClubDTO{" +
-                "ClubNo=" + ClubNo +
+                "clubNo=" + clubNo +
                 ", openDate=" + openDate +
                 ", clubName='" + clubName + '\'' +
                 ", clubStatus='" + clubStatus + '\'' +
