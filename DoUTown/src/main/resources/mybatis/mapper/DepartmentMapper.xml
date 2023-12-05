@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doutown.department.dao.DepartmentMapper">
+
+    <resultMap id="DepartmentResult" type="DepartmentDTO">
+        <id property="departmentCode" column="DEPARTMENT_CODE"/>
+        <result property="departmentName" column="DEPARTMENT_NAME"/>
+    </resultMap>
+
+</mapper>

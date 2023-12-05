@@ -1,61 +1,75 @@
 package com.doutown.student.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("StudentDTO")
 public class StudentDTO {
 
-    private Long StudentNo;
-    private String StudentName;
-    private String HakNumber;
-    private String DepartmentCode;
+    private Long studentNo;
+    private String studentName;
+    private String hakNumber;
+    private String memberNo;
+    private String departmentCode;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(Long studentNo, String studentName, String hakNumber, String departmentCode) {
-        StudentNo = studentNo;
-        StudentName = studentName;
-        HakNumber = hakNumber;
-        DepartmentCode = departmentCode;
+    public StudentDTO(Long studentNo, String studentName, String hakNumber, String memberNo, String departmentCode) {
+        this.studentNo = studentNo;
+        this.studentName = studentName;
+        this.hakNumber = hakNumber;
+        this.memberNo = memberNo;
+        this.departmentCode = departmentCode;
     }
 
     public Long getStudentNo() {
-        return StudentNo;
+        return studentNo;
     }
 
     public void setStudentNo(Long studentNo) {
-        StudentNo = studentNo;
+        this.studentNo = studentNo;
     }
 
     public String getStudentName() {
-        return StudentName;
+        return studentName;
     }
 
     public void setStudentName(String studentName) {
-        StudentName = studentName;
+        this.studentName = studentName;
     }
 
     public String getHakNumber() {
-        return HakNumber;
+        return hakNumber;
     }
 
     public void setHakNumber(String hakNumber) {
-        HakNumber = hakNumber;
+        this.hakNumber = hakNumber;
+    }
+
+    public String getMemberNo() {
+        return memberNo;
+    }
+
+    public void setMemberNo(String memberNo) {
+        this.memberNo = memberNo;
     }
 
     public String getDepartmentCode() {
-        return DepartmentCode;
+        return departmentCode;
     }
 
     public void setDepartmentCode(String departmentCode) {
-        DepartmentCode = departmentCode;
+        this.departmentCode = departmentCode;
     }
 
     @Override
     public String toString() {
         return "StudentDTO{" +
-                "StudentNo=" + StudentNo +
-                ", StudentName='" + StudentName + '\'' +
-                ", HakNumber='" + HakNumber + '\'' +
-                ", DepartmentCode='" + DepartmentCode + '\'' +
+                "studentNo=" + studentNo +
+                ", studentName='" + studentName + '\'' +
+                ", hakNumber='" + hakNumber + '\'' +
+                ", memberNo='" + memberNo + '\'' +
+                ", departmentCode='" + departmentCode + '\'' +
                 '}';
     }
 }

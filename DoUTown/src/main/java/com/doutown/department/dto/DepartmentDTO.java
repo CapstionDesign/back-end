@@ -1,39 +1,42 @@
 package com.doutown.department.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("DepartmentDTO")
 public class DepartmentDTO {
 
-    private String DepartmentCode;
-    private String DepartmentName;
+    private String departmentCode;
+    private String departmentName;
 
     public DepartmentDTO() {
     }
 
     public DepartmentDTO(String departmentCode, String departmentName) {
-        DepartmentCode = departmentCode;
-        DepartmentName = departmentName;
+        this.departmentCode = departmentCode;
+        this.departmentName = departmentName;
     }
 
     public String getDepartmentCode() {
-        return DepartmentCode;
+        return departmentCode;
     }
 
     public void setDepartmentCode(String departmentCode) {
-        DepartmentCode = departmentCode;
+        this.departmentCode = departmentCode;
     }
 
     public String getDepartmentName() {
-        return DepartmentName;
+        return departmentName;
     }
 
     public void setDepartmentName(String departmentName) {
-        DepartmentName = departmentName;
+        this.departmentName = departmentName;
     }
 
     @Override
     public String toString() {
         return "DepartmentDTO{" +
-                "DepartmentCode='" + DepartmentCode + '\'' +
-                ", DepartmentName='" + DepartmentName + '\'' +
+                "departmentCode='" + departmentCode + '\'' +
+                ", departmentName='" + departmentName + '\'' +
                 '}';
     }
 }

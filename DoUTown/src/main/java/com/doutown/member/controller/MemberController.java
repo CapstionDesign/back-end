@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/vi")
 public class MemberController {
 
-    //메퍼 의존성 주입
+    //생성자 주입
     private MemberMapper memberMapper;
 
     @Autowired

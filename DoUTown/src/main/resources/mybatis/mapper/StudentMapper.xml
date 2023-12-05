@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doutown.student.dao.StudentMapper">
+
+    <resultMap id="StudentResult" type="StudentDTO">
+        <id property="studentNo" column="STUDENT_NO"/>
+        <result property="studentName" column="STUDENT_NAME"/>
+        <result property="hakNumber" column="HAK_NUMBER"/>
+        <!-- Member 테이블이랑 조인해야함 -->
+        <result property="memberNo" column="MEMBER_NO"/>
+        <!-- Department 테이블이랑 조인해야함 -->
+        <result property="DepartmentCode" column="DEPARTMENT_CODE"/>
+
+    </resultMap>
+
+</mapper>
