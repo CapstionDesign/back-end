@@ -31,6 +31,9 @@ public class DatabaseConfig {
         hikariConfig.setAutoCommit(true);
         hikariConfig.setConnectionTimeout(30000);
         hikariConfig.setMaximumPoolSize(10);
+
+        System.out.println(hikariConfig.getUsername());
         return new HikariDataSource(hikariConfig);
+
     }
 }

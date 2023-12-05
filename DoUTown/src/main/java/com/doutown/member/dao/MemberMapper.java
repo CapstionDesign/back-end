@@ -10,8 +10,12 @@ public interface MemberMapper {
 
     //사용자 등록
     int save(MemberDTO dto);
-    //전체 사용자 조회
-    List<MemberDTO> findAll();
-    //특정 사용자 조회
+
+    List<MemberDTO> find();
+
     MemberDTO findByNo(Long memberNo);
+    int deleteMember(String memberName);
+
+    int updateMember(MemberDTO dto);
+
 }
