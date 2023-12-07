@@ -1,5 +1,6 @@
 package com.doutown.member.dto;
 
+import com.doutown.student.dto.StudentDTO;
 import org.apache.ibatis.type.Alias;
 
 import java.sql.Date;
@@ -8,22 +9,26 @@ import java.sql.Date;
 public class MemberDTO {
 
     private Long memberNo;
+    private String memberId;
+    private String memberPass;
     private String memberName;
     private String memberGrade;
     private String studentStatus;
     private Date registDate;
-    private String studentNo;
+    private StudentDTO studentDTO;
 
     public MemberDTO() {
     }
 
-    public MemberDTO(Long memberNo, String memberName, String memberGrade, String studentStatus, Date registDate, String studentNo) {
+    public MemberDTO(Long memberNo, String memberId, String memberPass, String memberName, String memberGrade, String studentStatus, Date registDate, StudentDTO studentDTO) {
         this.memberNo = memberNo;
+        this.memberId = memberId;
+        this.memberPass = memberPass;
         this.memberName = memberName;
         this.memberGrade = memberGrade;
         this.studentStatus = studentStatus;
         this.registDate = registDate;
-        this.studentNo = studentNo;
+        this.studentDTO = studentDTO;
     }
 
     public Long getMemberNo() {
@@ -32,6 +37,22 @@ public class MemberDTO {
 
     public void setMemberNo(Long memberNo) {
         this.memberNo = memberNo;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getMemberPass() {
+        return memberPass;
+    }
+
+    public void setMemberPass(String memberPass) {
+        this.memberPass = memberPass;
     }
 
     public String getMemberName() {
@@ -66,23 +87,25 @@ public class MemberDTO {
         this.registDate = registDate;
     }
 
-    public String getStudentNo() {
-        return studentNo;
+    public StudentDTO getStudentDTO() {
+        return studentDTO;
     }
 
-    public void setStudentNo(String studentNo) {
-        this.studentNo = studentNo;
+    public void setStudentDTO(StudentDTO studentDTO) {
+        this.studentDTO = studentDTO;
     }
 
     @Override
     public String toString() {
         return "MemberDTO{" +
                 "memberNo=" + memberNo +
+                ", memberId='" + memberId + '\'' +
+                ", memberPass='" + memberPass + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", memberGrade='" + memberGrade + '\'' +
                 ", studentStatus='" + studentStatus + '\'' +
                 ", registDate=" + registDate +
-                ", studentNo='" + studentNo + '\'' +
+                ", studentDTO=" + studentDTO +
                 '}';
     }
 }

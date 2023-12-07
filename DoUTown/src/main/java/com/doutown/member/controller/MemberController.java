@@ -32,25 +32,11 @@ public class MemberController {
     public List<MemberDTO> findAll() {
         return memberService.findAll();
     }
-    /*
-    @GetMapping("/members/{memberNo}")
-    public MemberDTO getMemberByMemberName(@PathVariable Long memberNo) {
-        return memberService.getMemberByNo(memberNo);
-    }
-     */
+
     @GetMapping("/members/{memberNo}")
     public ResponseEntity<MemberDTO> getMemberByMemberName(@PathVariable Long memberNo) {
         return ResponseEntity.ok().body(memberService.getMemberByNo(memberNo));
     }
-
-    /*
-    @DeleteMapping("/members/{memberNo}")
-    public ResponseEntity<MemberDTO> removeMember(@PathVariable Long memberNo) {
-        memberService.removeMember(memberNo);
-        return ResponseEntity.ok().header("Content-Type", "application/json; charset=UTF-8").body(memberDTO);
-    }
-
-     */
 
     @PutMapping("/members/{memberNo}")
     public ResponseEntity<MemberDTO> updateMember(@RequestBody MemberDTO dto, @PathVariable Long memberNo) {

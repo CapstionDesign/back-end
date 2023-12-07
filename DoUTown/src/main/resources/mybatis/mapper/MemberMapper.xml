@@ -6,25 +6,25 @@
 
     <resultMap id="MemberResult" type="MemberDTO">
         <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberPass" column="MEMBER_PASS"/>
         <result property="memberName" column="MEMBER_NAME"/>
         <result property="memberGrade" column="MEMBER_GRADE"/>
         <result property="studentStatus" column="STUDENT_STATUS"/>
         <result property="registDate" column="REGIST_DATE"/>
-        <result property="studentNo" column="STUDENT_NO"/>
-        <!-- student 테이블이랑 조인해야함 -->
-        <!--
-        <collection property="studentNo" ofType="StudentDTO">
-            <id property="studentNo" column="STUDENT_NO"/>
-            <result property="studentName" column="STUDENT_NAME"/>
-            <result property="hakNumber" column="HAK_NUMBER"/>
-            <result property="memberNo" column="MEMBER_NO"/>
-            <result property="DepartmentCode" column="DEPARTMENT_CODE"/>
-        </collection>
-        -->
+        <association property="studentDTO" resultMap="StudentResult"/>
+    </resultMap>
+
+    <resultMap id="StudentResult" type="StudentDTO">
+        <id property="studentNo" column="STUDENT_NO"/>
+        <result property="studentName" column="STUDENT_NAME"/>
+        <result property="hakNumber" column="HAK_NUMBER"/>
+        <result property="memberNo" column="MEMBER_NO"/>
+        <result property="departmentCode" column="DEPARTMENT_CODE"/>
     </resultMap>
 
     <select id="find" resultType="MemberDTO" resultMap="MemberResult">
-        SELECT * FROM MEMBER
+        SELECT m.*,s.* FROM MEMBER m JOIN STUDENT s ON m.MEMBER_NO=s.MEMBER_NO
     </select>
 
     <select id="findByNo" parameterType="Long" resultType="MemberDTO" resultMap="MemberResult">
@@ -32,8 +32,8 @@
     </select>
 
     <insert id="save" parameterType="MemberDTO" useGeneratedKeys="true" keyProperty="memberNo">
-            INSERT INTO MEMBER(MEMBER_NAME,MEMBER_GRADE,STUDENT_STATUS,REGIST_DATE)
-            VALUES(#{memberName}, DEFAULT, DEFAULT, CURRENT_TIMESTAMP)
+            INSERT INTO member(MEMBER_NAME,MEMBER_ID,MEMBER_PASS, MEMBER_GRADE,STUDENT_STATUS,REGIST_DATE)
+            VALUES(#{memberName},#{memberId},#{memberPass},default,default,now());
     </insert>
 
     <delete id="deleteMember" parameterType="String">
