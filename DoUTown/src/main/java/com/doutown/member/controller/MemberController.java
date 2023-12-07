@@ -2,6 +2,7 @@ package com.doutown.member.controller;
 
 import com.doutown.member.dao.MemberMapper;
 import com.doutown.member.dto.MemberDTO;
+import com.doutown.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,43 +15,48 @@ import java.util.List;
 public class MemberController {
 
     //생성자 주입
-    private MemberMapper memberMapper;
+    private MemberService memberService;
 
     @Autowired
-    public MemberController(MemberMapper memberMapper) {
-        this.memberMapper = memberMapper;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @PostMapping("/members")
-    @Transactional
     public MemberDTO save(@RequestBody MemberDTO dto) {
-        int affected = memberMapper.save(dto);
+        dto = memberService.save(dto);
         return dto;
     }
 
     @GetMapping("/members")
     public List<MemberDTO> findAll() {
-        return memberMapper.find();
+        return memberService.findAll();
     }
+    /*
     @GetMapping("/members/{memberNo}")
     public MemberDTO getMemberByMemberName(@PathVariable Long memberNo) {
-        return memberMapper.findByNo(memberNo);
+        return memberService.getMemberByNo(memberNo);
+    }
+     */
+    @GetMapping("/members/{memberNo}")
+    public ResponseEntity<MemberDTO> getMemberByMemberName(@PathVariable Long memberNo) {
+        return ResponseEntity.ok().body(memberService.getMemberByNo(memberNo));
     }
 
+    /*
     @DeleteMapping("/members/{memberNo}")
-    @Transactional
     public ResponseEntity<MemberDTO> removeMember(@PathVariable Long memberNo) {
-        MemberDTO memberDTO = memberMapper.findByNo(memberNo);
-        String memberName = memberDTO.getMemberName();
-        memberMapper.deleteMember(memberName);
+        memberService.removeMember(memberNo);
         return ResponseEntity.ok().header("Content-Type", "application/json; charset=UTF-8").body(memberDTO);
     }
+
+     */
 
     @PutMapping("/members/{memberNo}")
     public ResponseEntity<MemberDTO> updateMember(@RequestBody MemberDTO dto, @PathVariable Long memberNo) {
 
-        dto = memberMapper.findByNo(memberNo);
-        memberMapper.updateMember(dto);
+        dto = memberService.getMemberByNo(memberNo);
+        memberService.updateMember(memberNo);
 
         return ResponseEntity.ok().header("Content-Type","application/json; charset=UTF-8").body(dto);
     }
