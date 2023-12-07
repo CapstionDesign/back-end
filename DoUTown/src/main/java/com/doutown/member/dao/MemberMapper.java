@@ -22,6 +22,6 @@ public interface MemberMapper {
     int deleteMember(String memberName);
 
     //회원정보수정 -> 이메일 인증시 상태정보 변경
-    int updateMember(MemberDTO dto);
+    int updateMember(Long memberNo);
 
 }

@@ -12,7 +12,7 @@ public interface ClubMapper {
     List<ClubDTO> find();
 
     //동아리상세조회
-    ClubDTO findByName(String clubName);
+    ClubDTO findByNo(Long clubNo);
 
     //동아리등록
     int save(ClubDTO dto);
