@@ -23,12 +23,24 @@
         <result property="departmentCode" column="DEPARTMENT_CODE"/>
     </resultMap>
 
+    <select id="findByMember" parameterType="Map" resultType="boolean">
+        SELECT COUNT(*) FROM member WHERE MEMBER_ID=#{memberId} AND MEMBER_PASS=#{memberPass}
+    </select>
+
     <select id="find" resultType="MemberDTO" resultMap="MemberResult">
         SELECT m.*,s.* FROM MEMBER m JOIN STUDENT s ON m.MEMBER_NO=s.MEMBER_NO
     </select>
 
-    <select id="findByNo" parameterType="Long" resultType="MemberDTO" resultMap="MemberResult">
+    <select id="findByMemberNo" parameterType="Long" resultType="MemberDTO" resultMap="MemberResult">
         SELECT * FROM MEMBER WHERE MEMBER_NO=#{memberNo}
+    </select>
+
+    <select id="findStudentAll" parameterType="StudentDTO" resultMap="StudentResult">
+        SELECT * FROM STUDENT
+    </select>
+
+    <select id="findByStudentNo" parameterType="Long" resultType="StudentDTO" resultMap="StudentResult">
+        SELECT * FROM STUDENT WHERE STUDENT_NO=#{studentNo}
     </select>
 
     <insert id="save" parameterType="MemberDTO" useGeneratedKeys="true" keyProperty="memberNo">
