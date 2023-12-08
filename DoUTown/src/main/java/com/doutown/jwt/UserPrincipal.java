@@ -20,6 +20,7 @@ public class UserPrincipal implements UserDetails {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
+
     }
 
     public static UserPrincipal create(User user) {

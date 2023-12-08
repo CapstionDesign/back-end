@@ -46,4 +46,5 @@ public class AuthController {
 
         return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
     }
+
 }

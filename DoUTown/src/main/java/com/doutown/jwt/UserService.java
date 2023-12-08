@@ -20,6 +20,7 @@ public class UserService {
         newUser.setUsername(username);
         newUser.setPassword(passwordEncoder.encode(password)); // 패스워드 암호화
         return userRepository.save(newUser);
+
     }
 
     public User getUserByUsername(String username) {
