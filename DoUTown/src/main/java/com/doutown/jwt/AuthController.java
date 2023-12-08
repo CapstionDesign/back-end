@@ -25,8 +25,8 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
+                        loginRequest.getMemeberNo(),
+                        loginRequest.getMemberName()
                 )
         );
 
@@ -38,13 +38,23 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
-        if (userService.getUserByUsername(signUpRequest.getUsername()) != null) {
+        if (userService.getUserByUsername(signUpRequest.getMemberNo()) != null) {
             return ResponseEntity.badRequest().body(new ApiResponse(false, "Username is already taken!"));
         }
 
-        userService.signUpUser(signUpRequest.getUsername(), signUpRequest.getPassword());
+        userService.signUpUser(signUpRequest.getMemberNo(), signUpRequest.getMemberName());
 
         return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getMemeberNo(), loginRequest.getMemberName())
+        );
 
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = tokenProvider.generateToken(authentication);
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+    }
 }

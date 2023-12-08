@@ -9,25 +9,25 @@ import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
 
-    private Long id;
+    private Long memberNo;
     private String username;
-    private String password;
+    private String memberName;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
+    public UserPrincipal(Long memberNo, String username, String memberName, Collection<? extends GrantedAuthority> authorities) {
+        this.memberNo = memberNo;
         this.username = username;
-        this.password = password;
+        this.memberName = memberName;
         this.authorities = authorities;
 
     }
 
     public static UserPrincipal create(User user) {
         return new UserPrincipal(
-                user.getId(),
+                user.getMemberNo(),
                 user.getUsername(),
-                user.getPassword(),
+                user.getMemberName(),
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
         );
     }
@@ -60,15 +60,15 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return memberName;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
-    public Long getId() {
-        return id;
+    public Long getMemberNo() {
+        return memberNo;
     }
 
 }
