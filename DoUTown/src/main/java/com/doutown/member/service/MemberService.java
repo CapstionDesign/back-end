@@ -5,6 +5,7 @@ import com.doutown.member.dto.MemberDTO;
 import com.doutown.student.dto.StudentDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class MemberService {
     }
 
     //회원가입시 -> 인증 X
+    @Transactional
     public MemberDTO save(MemberDTO dto) {
         int affected = memberMapper.save(dto);
         return dto;
@@ -60,6 +62,7 @@ public class MemberService {
 
 
     //회원 탈퇴
+    @Transactional
     public int removeMember(Long memberNo) {
         int affected = 0;
         MemberDTO memberDTO = memberMapper.findByMemberNo(memberNo);
@@ -69,6 +72,7 @@ public class MemberService {
 
 
     //회원 정보 수정
+    @Transactional
     public int updateMember(Long memberNo) {
 
 
@@ -78,4 +82,15 @@ public class MemberService {
         return affected;
     }
 
+<<<<<<< Updated upstream
+=======
+    //학생 등록
+    @Transactional
+    public StudentDTO insertStudent(StudentDTO dto) {
+        int affected = 0;
+        affected = memberMapper.insertStudent(dto);
+        return dto;
+    }
+
+>>>>>>> Stashed changes
 }
