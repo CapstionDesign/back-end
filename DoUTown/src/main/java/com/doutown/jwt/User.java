@@ -1,21 +1,22 @@
 package com.doutown.jwt;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "member")
 public class User {
 
-    public Long getId() {
-        return id;
+
+
+    public Long getMemberNo() {
+        return memberNo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMemberNo(Long memberNo) {
+        this.memberNo = memberNo;
     }
 
     public String getUsername() {
+        System.out.println(username);
         return username;
     }
 
@@ -23,19 +24,24 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMemberName() {
+        System.out.println(memberName);
+        return memberName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMemberName(String password) {
+        this.memberName = password;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "member_no", unique = true)
+    private Long memberNo;
+    @Column
     private String username;
-    private String password;
+    @Column(name = "member_name", nullable = false)
+    private String memberName;
+
 
 
 }

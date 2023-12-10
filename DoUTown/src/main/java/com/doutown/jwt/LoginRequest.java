@@ -2,24 +2,24 @@ package com.doutown.jwt;
 
 public class LoginRequest {
 
-    public String getUsername() {
-        return username;
+    public String getMemeberNo() {
+        return memeberNo;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMemeberNo(String memeberNo) {
+        this.memeberNo = memeberNo;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    private String username;
-    private String password;
+    private String memeberNo;
+    private String memberName;
 
 
 }

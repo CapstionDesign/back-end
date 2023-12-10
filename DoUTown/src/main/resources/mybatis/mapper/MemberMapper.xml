@@ -52,6 +52,10 @@
         DELETE FROM MEMBER WHERE MEMBER_NAME=#{memberName}
     </delete>
 
+    <select id="login">
+        SELECT * FROM MEMBER WHERE MEMBER_NO =#{memberNo} AND MEMBER_NAME =#{memberName}
+    </select>
+
     <update id="updateMember" parameterType="MemberDTO">
         UPDATE MEMBER SET STUDENT_STATUS=#{studentStatus}
     </update>
