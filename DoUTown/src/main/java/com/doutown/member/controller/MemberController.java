@@ -66,7 +66,13 @@ public class MemberController {
         return memberService.findStudentAll();
     }
 
+    @PostMapping("/members/students")
+    public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO dto) {
 
+        dto = memberService.insertStudent(dto);
+
+        return ResponseEntity.ok().header("Content-Type", "application/json; charset=UTF-8").body(dto);
+    }
 
 
 }

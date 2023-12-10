@@ -56,4 +56,10 @@
         UPDATE MEMBER SET STUDENT_STATUS=#{studentStatus}
     </update>
 
+    <insert id="insertStudent" parameterType="StudentDTO">
+        INSERT INTO
+        STUDENT(STUDENT_NAME, HAK_NUMBER, MEMBER_NO, DEPARTENT_CODE)
+        VALUES(#{studentName}, #{hakNumber}, #{memberNo}, #{departmentCode})
+    </insert>
+
 </mapper>

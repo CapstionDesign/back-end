@@ -22,9 +22,6 @@ public interface MemberMapper {
     //회원한명상세조회
     MemberDTO findByMemberNo(Long memberNo);
 
-    //학생회원 인증 시 학생 컬럼에 추가
-    int saveStudent(StudentDTO dto);
-
     //학생 전체 목록 조회
     List<StudentDTO> findStudentAll();
 
@@ -36,5 +33,9 @@ public interface MemberMapper {
 
     //회원정보수정 -> 이메일 인증시 상태정보 변경
     int updateMember(Long memberNo);
+
+    //이메일 인증 후 회원 등록
+    int insertStudent(StudentDTO dto);
+
 
 }
