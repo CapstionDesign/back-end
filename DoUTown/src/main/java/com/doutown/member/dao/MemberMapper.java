@@ -1,7 +1,7 @@
 package com.doutown.member.dao;
 
 import com.doutown.member.dto.MemberDTO;
-import com.doutown.student.dto.StudentDTO;
+import com.doutown.member.dto.StudentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,27 +14,30 @@ public interface MemberMapper {
     boolean findByMember(Map map);
 
     //회원가입
-    int save(MemberDTO dto);
+    int saveMember(MemberDTO dto);
 
-    //회원전체목록조회
-    List<MemberDTO> find();
+    //회원 전체 목록조회
+    List<MemberDTO> findMemberAll();
 
-    //회원한명상세조회
-    MemberDTO findByMemberNo(Long memberNo);
+    //회원 한명 상세 조회 - 번호
+    MemberDTO findMemberByNo(Long memberNo);
 
-    //학생회원 인증 시 학생 컬럼에 추가
-    int saveStudent(StudentDTO dto);
+    //회원 한명 상세 조회 - 이름
+    MemberDTO findMemberByName(String memberName);
 
     //학생 전체 목록 조회
-    List<StudentDTO> findStudentAll();
+    List<MemberDTO> findStudentAll();
 
-    //학생 상세 조회
-    StudentDTO findByStudentNo(Long studentNo);
+    //학생 한명 상세 조회
+    MemberDTO findStudentByNo(Long memberNo);
 
-    //회원삭제(탈퇴)
-    int deleteMember(String memberName);
+    //회원 탈퇴
+    int deleteMember(Long memberNo);
 
-    //회원정보수정 -> 이메일 인증시 상태정보 변경
+    //인증 시 회원 정보 업데이트
     int updateMember(Long memberNo);
+
+    //인증 후 학생 등록
+    int saveStudent(Long memberNo);
 
 }

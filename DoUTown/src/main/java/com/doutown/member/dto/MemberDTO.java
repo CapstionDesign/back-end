@@ -1,6 +1,5 @@
 package com.doutown.member.dto;
 
-import com.doutown.student.dto.StudentDTO;
 import org.apache.ibatis.type.Alias;
 
 import java.sql.Date;
