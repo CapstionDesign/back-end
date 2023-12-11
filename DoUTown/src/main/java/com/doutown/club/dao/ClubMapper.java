@@ -11,8 +11,11 @@ public interface ClubMapper {
     //동아리 전체 조회 - 관리자
     List<ClubDTO> find();
 
-    //동아리상세조회 - 관리자
+    //동아리상세조회 - 번호로 조회
     ClubDTO findByNo(Long clubNo);
+
+    //동아리상세조회 - 동아리명으로 조회
+    ClubDTO findByName(String clubName);
 
     //승인이 완료된 동아리 전체 조회 - 학생이 조회
     List<ClubDTO> findAllToStatus();

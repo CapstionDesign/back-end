@@ -38,6 +38,6 @@ public interface MemberMapper {
     int updateMember(Long memberNo);
 
     //인증 후 학생 등록
-    int saveStudent(Long memberNo);
+    int saveStudent(StudentDTO dto);
 
 }

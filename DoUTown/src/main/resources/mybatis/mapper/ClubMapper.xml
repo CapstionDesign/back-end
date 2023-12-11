@@ -18,6 +18,7 @@
         <id property="studentNo" column="STUDENT_NO"/>
     </resultMap>
 
+    <!-- 동아리 전체 조회 -->
     <select id="find" resultType="ClubDTO" resultMap="ClubResult">
         SELECT
             c.CLUB_NO,
@@ -28,17 +29,56 @@
             c.CANCEL_REASON,
             s.STUDENT_NO
         FROM CLUB c JOIN STUDENT s ON c.STUDENT_NO = s.STUDENT_NO;
+        WHERE s.CLUB_STATUS="Y"
     </select>
 
     <select id="findByNo" resultType="ClubDTO" parameterType="Long" resultMap="ClubResult">
-        SELECT * FROM CLUB WHERE CLUB_NO=#{clubNo}
+        SELECT
+            c.CLUB_NO,
+            c.OPEN_DATE,
+            c.CLUB_NAME,
+            c.CLUB_STATUS,
+            c.CLUB_CANCEL,
+            c.CANCEL_REASON,
+            s.STUDENT_NO
+        FROM CLUB c JOIN STUDENT s ON c.STUDENT_NO = s.STUDENT_NO
+        WHERE c.CLUB_NO=#{clubNo}
     </select>
 
+    <select id="findByName" resultType="ClubDTO" parameterType="String" resultMap="ClubResult">
+        SELECT
+            c.CLUB_NO,
+            c.OPEN_DATE,
+            c.CLUB_NAME,
+            c.CLUB_STATUS,
+            c.CLUB_CANCEL,
+            c.CANCEL_REASON,
+            s.STUDENT_NO
+        FROM CLUB c JOIN STUDENT s ON c.STUDENT_NO = s.STUDENT_NO
+        WHERE CLUB_NAME=#{clubName}
+    </select>
+
+    <!-- 승인이 완료된 동아리 전체 조회 -->
+    <select id="findAllToStatus" resultType="ClubDTO" resultMap="ClubResult">
+        SELECT * FROM CLUB WHERE CLUB_STATUS="Y"
+    </select>
+
+    <!-- 승인이 완려된 동아리 상세 조회 -->
+    <select id="findByNoToStatus" parameterType="Long" resultType="ClubDTO" resultMap="ClubResult">
+        SELECT * FROM CLUB WHERE CLUB_STATUS="Y" AND CLUB_NO=#{clubNo}
+    </select>
+
+    <!-- 동아리 신청 -->
     <insert id="save" parameterType="ClubDTO">
-        INSERT INTO CLUB(OPEN_DATE,CLUB_NAME,CLUB_STATUS)
-        VALUES(now(),#{clubName},DEFAULT)
+        INSERT INTO CLUB(STUDENT_NO,OPEN_DATE,CLUB_NAME,CLUB_STATUS)
+        VALUES(#{studentNo},now(),#{clubName},DEFAULT)
     </insert>
 
+    <update id="updateClub" parameterType="Long">
+        UPDATE CLUB SET CLUB_STATUS="Y"  WHERE CLUB_NO=#{clubNO}
+    </update>
+
+    <!-- 동아리 삭제 -->
     <delete id="deleteClub" parameterType="Long">
         DELETE FROM CLUB WHERE CLUB_NO=#{clubNo}
     </delete>

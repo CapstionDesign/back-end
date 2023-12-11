@@ -10,6 +10,13 @@
         <result property="clubGrade" column="CLUB_GRADE"/>
         <result property="joinDate" column="JOIN_DATE"/>
         <result property="selfintro" column="SELFINTRO"/>
+
+        <association property="studentDTO" javaType="com.doutown.member.dto.StudentDTO">
+            <id property="studentNo" column="STUDENT_NO"/>
+            <result property="studentName" column="STUDENT_NAME"/>
+            <result property="hakNumber" column="HAK_NUMBER"/>
+            <result property="memberNo" column="MEMBER_NO"/>
+        </association>
     </resultMap>
 
     <select id="find" resultType="ClubMemberDTO" resultMap="ClubMemberResult">

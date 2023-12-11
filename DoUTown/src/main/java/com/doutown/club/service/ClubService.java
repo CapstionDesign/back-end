@@ -21,15 +21,36 @@ public class ClubService {
         return clubMapper.find();
     }
 
-    //특정 동아리 조회
+    //특정 동아리 조회 - 번호로 조회
     public ClubDTO findByNo(Long clubNo) {
         return clubMapper.findByNo(clubNo);
+    }
+
+    //특정 동아리 조회 - 이름으로 조회
+    public ClubDTO findByName(String clubName) {
+        return clubMapper.findByName(clubName);
+    }
+
+    //승인된 동아리 전체 조회
+    public List<ClubDTO> findAllToStatus() {
+        return clubMapper.findAllToStatus();
+    }
+
+    //승인된 동아리 상세 조회
+    public ClubDTO findByNoToStatus(Long clubNo) {
+        return clubMapper.findByNoToStatus(clubNo);
     }
 
     //동아리 등록
     @Transactional
     public ClubDTO save(ClubDTO dto) {
         return clubMapper.save(dto);
+    }
+
+    //동아리 수정 status : N -> Y
+    @Transactional
+    public int updateClub(Long clubNo) {
+        return clubMapper.updateClub(clubNo);
     }
 
     //동아리 삭제

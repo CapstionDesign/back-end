@@ -9,38 +9,41 @@ import java.sql.Date;
 @Alias("ClubMemberDTO")
 public class ClubMemberDTO {
 
-    private StudentDTO studentDTO;
-    private ClubDTO clubDTO;
+    private Long studentNo;
+    private Long clubNo;
     private String clubGrade;
     private Date joinDate;
     private String selfintro;
+
+    private StudentDTO studentDTO;
 
 
     public ClubMemberDTO() {
     }
 
-    public ClubMemberDTO(StudentDTO studentDTO, ClubDTO clubDTO, String clubGrade, Date joinDate, String selfintro) {
-        this.studentDTO = studentDTO;
-        this.clubDTO = clubDTO;
+    public ClubMemberDTO(Long studentNo, Long clubNo, String clubGrade, Date joinDate, String selfintro, StudentDTO studentDTO) {
+        this.studentNo = studentNo;
+        this.clubNo = clubNo;
         this.clubGrade = clubGrade;
         this.joinDate = joinDate;
         this.selfintro = selfintro;
-    }
-
-    public StudentDTO getStudentDTO() {
-        return studentDTO;
-    }
-
-    public void setStudentDTO(StudentDTO studentDTO) {
         this.studentDTO = studentDTO;
     }
 
-    public ClubDTO getClubDTO() {
-        return clubDTO;
+    public Long getStudentNo() {
+        return studentNo;
     }
 
-    public void setClubDTO(ClubDTO clubDTO) {
-        this.clubDTO = clubDTO;
+    public void setStudentNo(Long studentNo) {
+        this.studentNo = studentNo;
+    }
+
+    public Long getClubNo() {
+        return clubNo;
+    }
+
+    public void setClubNo(Long clubNo) {
+        this.clubNo = clubNo;
     }
 
     public String getClubGrade() {
@@ -67,14 +70,23 @@ public class ClubMemberDTO {
         this.selfintro = selfintro;
     }
 
+    public StudentDTO getStudentDTO() {
+        return studentDTO;
+    }
+
+    public void setStudentDTO(StudentDTO studentDTO) {
+        this.studentDTO = studentDTO;
+    }
+
     @Override
     public String toString() {
         return "ClubMemberDTO{" +
-                "studentDTO=" + studentDTO +
-                ", clubDTO=" + clubDTO +
+                "studentNo=" + studentNo +
+                ", clubNo=" + clubNo +
                 ", clubGrade='" + clubGrade + '\'' +
                 ", joinDate=" + joinDate +
                 ", selfintro='" + selfintro + '\'' +
+                ", studentDTO=" + studentDTO +
                 '}';
     }
 }

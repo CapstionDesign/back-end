@@ -48,13 +48,6 @@ dependencies {
     //스웨거
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
-    //시큐리티
-
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'io.jsonwebtoken:jjwt:0.9.1' // JWT 라이브러리
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    implementation 'com.h2database:h2'
-
     //JUnit4 추가
     testImplementation("org.junit.vintage:junit-vintage-engine") {
         exclude group: "org.hamcrest", module: "hamcrest-core"
