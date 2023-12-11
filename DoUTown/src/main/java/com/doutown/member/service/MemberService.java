@@ -29,6 +29,7 @@ public class MemberService {
         return memberMapper.saveMember(dto);
     }
 
+
     //회원 전체 목록 조회
     public List<MemberDTO> findMemberAll() {
         return memberMapper.findMemberAll();
@@ -37,6 +38,10 @@ public class MemberService {
     //회원 한명 상세 조회 - 번호
     public MemberDTO findMemberByNo(Long memberNo) {
         return memberMapper.findMemberByNo(memberNo);
+   //회원 목록 조회
+    public List<MemberDTO> findAll() {
+        return memberMapper.find();
+
     }
 
     //회원 한명 상세 조회 - 이름
@@ -59,12 +64,24 @@ public class MemberService {
 
     //인증 시 회원 정보 업데이트
     public int updateMember(Long memberNo) {
+
         return memberMapper.updateMember(memberNo);
     }
 
     //인중 후 학생 등록
     public int saveStudent(Long memberNo) {
         return memberMapper.saveStudent(memberNo);
+
+        int affected = 0;
+        affected = memberMapper.updateMember(memberNo);
+        return affected;
+    }
+
+    //학생 등록
+    public StudentDTO insertStudent(StudentDTO dto) {
+        int affected = 0;
+        affected = memberMapper.insertStudent(dto);
+        return dto;
     }
 
 }

@@ -91,6 +91,7 @@
         DELETE FROM MEMBER WHERE MEMBER_NAME=#{memberName}
     </delete>
 
+
     <!-- 인증시 상태 업데이트 N -> Y -->
     <update id="updateMember" parameterType="Long">
         UPDATE MEMBER SET STUDENT_STATUS="Y" WHERE MEMBER_NO=#{memberNo}
@@ -102,6 +103,20 @@
         INSERT INTO
         STUDENT(STUDENT_NAME,HAK_NUMBER,MEMBER_NO,DEPARTMENT_CODE)
         VALUES(#{sutdentName},#{hakNumber},#{memberNo},#{departmentCode})
+
+    <select id="login">
+        SELECT * FROM MEMBER WHERE MEMBER_NO =#{memberNo} AND MEMBER_NAME =#{memberName}
+    </select>
+
+    <update id="updateMember" parameterType="MemberDTO">
+        UPDATE MEMBER SET STUDENT_STATUS=#{studentStatus}
+    </update>
+
+    <insert id="insertStudent" parameterType="StudentDTO">
+        INSERT INTO
+        STUDENT(STUDENT_NAME, HAK_NUMBER, MEMBER_NO, DEPARTENT_CODE)
+        VALUES(#{studentName}, #{hakNumber}, #{memberNo}, #{departmentCode})
+
     </insert>
 
 </mapper>

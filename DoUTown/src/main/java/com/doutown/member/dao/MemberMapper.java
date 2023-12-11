@@ -22,8 +22,11 @@ public interface MemberMapper {
     //회원 한명 상세 조회 - 번호
     MemberDTO findMemberByNo(Long memberNo);
 
+
     //회원 한명 상세 조회 - 이름
     MemberDTO findMemberByName(String memberName);
+
+
 
     //학생 전체 목록 조회
     List<MemberDTO> findStudentAll();
@@ -37,7 +40,13 @@ public interface MemberMapper {
     //인증 시 회원 정보 업데이트
     int updateMember(Long memberNo);
 
+
     //인증 후 학생 등록
     int saveStudent(Long memberNo);
+
+    //이메일 인증 후 회원 등록
+    int insertStudent(StudentDTO dto);
+
+
 
 }
