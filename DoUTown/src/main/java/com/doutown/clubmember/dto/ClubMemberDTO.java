@@ -1,37 +1,46 @@
 package com.doutown.clubmember.dto;
 
+import com.doutown.club.dto.ClubDTO;
+import com.doutown.member.dto.StudentDTO;
 import org.apache.ibatis.type.Alias;
+
+import java.sql.Date;
 
 @Alias("ClubMemberDTO")
 public class ClubMemberDTO {
 
-    private Long studentNo;
-    private Long clubNo;
+    private StudentDTO studentDTO;
+    private ClubDTO clubDTO;
     private String clubGrade;
+    private Date joinDate;
+    private String selfintro;
+
 
     public ClubMemberDTO() {
     }
 
-    public ClubMemberDTO(Long studentNo, Long clubNo, String clubGrade) {
-        this.studentNo = studentNo;
-        this.clubNo = clubNo;
+    public ClubMemberDTO(StudentDTO studentDTO, ClubDTO clubDTO, String clubGrade, Date joinDate, String selfintro) {
+        this.studentDTO = studentDTO;
+        this.clubDTO = clubDTO;
         this.clubGrade = clubGrade;
+        this.joinDate = joinDate;
+        this.selfintro = selfintro;
     }
 
-    public Long getStudentNo() {
-        return studentNo;
+    public StudentDTO getStudentDTO() {
+        return studentDTO;
     }
 
-    public void setStudentNo(Long studentNo) {
-        this.studentNo = studentNo;
+    public void setStudentDTO(StudentDTO studentDTO) {
+        this.studentDTO = studentDTO;
     }
 
-    public Long getClubNo() {
-        return clubNo;
+    public ClubDTO getClubDTO() {
+        return clubDTO;
     }
 
-    public void setClubNo(Long clubNo) {
-        this.clubNo = clubNo;
+    public void setClubDTO(ClubDTO clubDTO) {
+        this.clubDTO = clubDTO;
     }
 
     public String getClubGrade() {
@@ -42,12 +51,30 @@ public class ClubMemberDTO {
         this.clubGrade = clubGrade;
     }
 
+    public Date getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public String getSelfintro() {
+        return selfintro;
+    }
+
+    public void setSelfintro(String selfintro) {
+        this.selfintro = selfintro;
+    }
+
     @Override
     public String toString() {
         return "ClubMemberDTO{" +
-                "studentNo=" + studentNo +
-                ", clubNo=" + clubNo +
+                "studentDTO=" + studentDTO +
+                ", clubDTO=" + clubDTO +
                 ", clubGrade='" + clubGrade + '\'' +
+                ", joinDate=" + joinDate +
+                ", selfintro='" + selfintro + '\'' +
                 '}';
     }
 }

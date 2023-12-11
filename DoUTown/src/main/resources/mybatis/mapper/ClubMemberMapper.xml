@@ -2,12 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doutown.club.dao.ClubMapper">
+<mapper namespace="com.doutown.clubmember.dao.ClubMemberMapper">
 
     <resultMap id="ClubMemberResult" type="ClubMemberDTO">
         <id property="studentNo" column="STUDENT_NO"/>
         <result property="clubNo" column="CLUB_NO"/>
         <result property="clubGrade" column="CLUB_GRADE"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+        <result property="selfintro" column="SELFINTRO"/>
     </resultMap>
 
     <select id="find" resultType="ClubMemberDTO" resultMap="ClubMemberResult">

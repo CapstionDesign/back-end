@@ -82,15 +82,14 @@
 
     <!-- 회원가입 -->
     <insert id="saveMember" parameterType="MemberDTO" useGeneratedKeys="true" keyProperty="memberNo">
-            INSERT INTO member(MEMBER_NAME,MEMBER_ID,MEMBER_PASS, MEMBER_GRADE,STUDENT_STATUS,REGIST_DATE)
-            VALUES(#{memberName},#{memberId},#{memberPass},default,default,now());
+        INSERT INTO member(MEMBER_NAME,MEMBER_ID,MEMBER_PASS, MEMBER_GRADE,STUDENT_STATUS,REGIST_DATE)
+        VALUES(#{memberName},#{memberId},#{memberPass},default,default,now());
     </insert>
 
     <!-- 회원탈퇴 -->
     <delete id="deleteMember" parameterType="String">
         DELETE FROM MEMBER WHERE MEMBER_NAME=#{memberName}
     </delete>
-
 
     <!-- 인증시 상태 업데이트 N -> Y -->
     <update id="updateMember" parameterType="Long">
@@ -101,22 +100,8 @@
     <!-- 인증시 전달 받아야하는 데이터 memberNo,memberName -->
     <insert id="saveStudent" parameterType="StudentDTO" useGeneratedKeys="true" keyProperty="studentNo">
         INSERT INTO
-        STUDENT(STUDENT_NAME,HAK_NUMBER,MEMBER_NO,DEPARTMENT_CODE)
+            STUDENT(STUDENT_NAME,HAK_NUMBER,MEMBER_NO,DEPARTMENT_CODE)
         VALUES(#{sutdentName},#{hakNumber},#{memberNo},#{departmentCode})
-
-    <select id="login">
-        SELECT * FROM MEMBER WHERE MEMBER_NO =#{memberNo} AND MEMBER_NAME =#{memberName}
-    </select>
-
-    <update id="updateMember" parameterType="MemberDTO">
-        UPDATE MEMBER SET STUDENT_STATUS=#{studentStatus}
-    </update>
-
-    <insert id="insertStudent" parameterType="StudentDTO">
-        INSERT INTO
-        STUDENT(STUDENT_NAME, HAK_NUMBER, MEMBER_NO, DEPARTENT_CODE)
-        VALUES(#{studentName}, #{hakNumber}, #{memberNo}, #{departmentCode})
-
     </insert>
 
 </mapper>
