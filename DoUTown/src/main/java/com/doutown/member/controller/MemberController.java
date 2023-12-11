@@ -76,13 +76,7 @@ public class MemberController {
         return ResponseEntity.ok().header("Content-Type", "application/json").body(dto);
     }
 
-    @PostMapping("/members/students")
-    public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO dto) {
 
-        dto = memberService.insertStudent(dto);
-
-        return ResponseEntity.ok().header("Content-Type", "application/json; charset=UTF-8").body(dto);
-    }
 
     //인증 회원 정보 수정
     @PutMapping("/members/{memberNo}")

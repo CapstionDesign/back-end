@@ -9,10 +9,25 @@
         <result property="openDate" column="OPEN_DATE"/>
         <result property="clubName" column="CLUB_NAME"/>
         <result property="clubStatus" column="CLUB_STATUS"/>
+        <result property="clubCancel" column="CLUB_CANCEL"/>
+        <result property="cancelReason" column="CANCEL_REASON"/>
+        <association property="studentDTO" resultMap="StudentResult"/>
+    </resultMap>
+
+    <resultMap id="StudentResult" type="com.doutown.member.dto.StudentDTO">
+        <id property="studentNo" column="STUDENT_NO"/>
     </resultMap>
 
     <select id="find" resultType="ClubDTO" resultMap="ClubResult">
-        SELECT * FROM CLUB
+        SELECT
+            c.CLUB_NO,
+            c.OPEN_DATE,
+            c.CLUB_NAME,
+            c.CLUB_STATUS,
+            c.CLUB_CANCEL,
+            c.CANCEL_REASON,
+            s.STUDENT_NO
+        FROM CLUB c JOIN STUDENT s ON c.STUDENT_NO = s.STUDENT_NO;
     </select>
 
     <select id="findByNo" resultType="ClubDTO" parameterType="Long" resultMap="ClubResult">

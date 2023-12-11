@@ -3,6 +3,7 @@ package com.doutown.club.controller;
 import com.doutown.club.dao.ClubMapper;
 import com.doutown.club.dto.ClubDTO;
 import com.doutown.club.service.ClubService;
+import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vi")
+@RequestMapping("/api/v1")
+@CrossOrigin
+@Api(tags = {"02.동아리"}, description = "동아리 관련 서비스")
 public class ClubController {
 
     ClubService clubService;

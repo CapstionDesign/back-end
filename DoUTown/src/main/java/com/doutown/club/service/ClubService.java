@@ -1,6 +1,5 @@
 package com.doutown.club.service;
 
-
 import com.doutown.club.dao.ClubMapper;
 import com.doutown.club.dto.ClubDTO;
 import org.springframework.stereotype.Service;
@@ -8,12 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-
 @Service
 public class ClubService {
-
 
     ClubMapper clubMapper;
 
@@ -47,7 +42,6 @@ public class ClubService {
 
         return affected;
     }
-
 
 
 }
