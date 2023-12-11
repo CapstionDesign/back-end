@@ -1,5 +1,8 @@
 package com.doutown.clubmember.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ClubMemberDTO")
 public class ClubMemberDTO {
 
     private Long studentNo;

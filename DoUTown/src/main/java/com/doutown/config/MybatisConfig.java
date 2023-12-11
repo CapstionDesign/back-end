@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 
 @Configuration
-@MapperScan(basePackages = {"com.doutown.member.dao","com.doutown.club.dao"}, sqlSessionFactoryRef ="sqlSessionFactory")
+@MapperScan(basePackages = {"com.doutown.member.dao","com.doutown.club.dao","com.doutown.clubmember.dao"}, sqlSessionFactoryRef ="sqlSessionFactory")
 public class MybatisConfig {
 
     //생성자 주입

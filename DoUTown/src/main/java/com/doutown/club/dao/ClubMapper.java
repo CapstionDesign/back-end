@@ -15,12 +15,12 @@ public interface ClubMapper {
     ClubDTO findByNo(Long clubNo);
 
     //동아리등록
-    int save(ClubDTO dto);
+    ClubDTO save(ClubDTO dto);
 
     //동아리삭제
-    int deleteClub(String clubName);
+    int deleteClub(Long clubNo);
 
     //동아리수정
-    int updateClub(String clubName);
+    int updateClub(Long clubNo);
 
 }

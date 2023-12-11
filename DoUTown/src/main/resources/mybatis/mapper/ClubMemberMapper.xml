@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doutown.club.dao.ClubMapper">
+
+    <resultMap id="ClubMemberResult" type="ClubMemberDTO">
+        <id property="studentNo" column="STUDENT_NO"/>
+        <result property="clubNo" column="CLUB_NO"/>
+        <result property="clubGrade" column="CLUB_GRADE"/>
+    </resultMap>
+
+    <select id="find" resultType="ClubMemberDTO" resultMap="ClubMemberResult">
+        SELECT * FROM CLUB_MEMBER
+    </select>
+
+    <select id="findByNo" resultType="ClubMemberDTO" parameterType="Long" resultMap="ClubMemberResult">
+        SELECT * FROM CLUB_MEMBER WHERE STUDENT_NO=#{studentNo}
+    </select>
+
+    <insert id="save" parameterType="ClubMemberDTO">
+        INSERT INTO CLUB_MEMBER VALUES(#{studentNo}, #{clubNo}, DEFAULT)
+    </insert>
+
+</mapper>

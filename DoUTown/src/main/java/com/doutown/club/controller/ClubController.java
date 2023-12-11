@@ -2,6 +2,7 @@ package com.doutown.club.controller;
 
 import com.doutown.club.dao.ClubMapper;
 import com.doutown.club.dto.ClubDTO;
+import com.doutown.club.service.ClubService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -12,37 +13,40 @@ import java.util.List;
 @RequestMapping("/api/vi")
 public class ClubController {
 
-    private ClubMapper clubMapper;
+    ClubService clubService;
 
-    public ClubController(ClubMapper clubMapper) {
-        this.clubMapper = clubMapper;
+    public ClubController(ClubService clubService) {
+        this.clubService = clubService;
     }
 
+    //등록된 동아리 목록 조회
     @GetMapping("/clubs")
     public List<ClubDTO> findAll() {
-        return clubMapper.find();
+        return clubService.findAll();
     }
 
-    @GetMapping("/clubs/{clubNo}")
-    public ClubDTO findByNo(Long clubNo) {
-        return clubMapper.findByNo(clubNo);
-    }
-
+    //새로운 동아리 등록
     @PostMapping("/clubs")
     public ClubDTO save(@RequestBody ClubDTO dto) {
-        clubMapper.save(dto);
-        return dto;
+        return clubService.save(dto);
     }
 
+    //특정 동아리 상세 조회
+    @GetMapping("/clubs/{clubNo}")
+    public ResponseEntity<ClubDTO> getClubsByClubNo(@PathVariable Long clubNo) {
+        return ResponseEntity.ok().header("Content-Type", "application/json").body(clubService.findByNo(clubNo));
+    }
+
+    //동아리 삭제
     @DeleteMapping("/clubs/{clubNo}")
     public ResponseEntity<ClubDTO> removeClub(@PathVariable Long clubNo) {
-        ClubDTO clubDTO = clubMapper.findByNo(clubNo);
-        String clubName = clubDTO.getClubName();
-        clubMapper.deleteClub(clubName);
-        return ResponseEntity.ok().header("Content-Type","application/json; charset=UTF-8").body(clubDTO);
+
+        ClubDTO dto = clubService.findByNo(clubNo);
+
+        clubService.removeClub(clubNo);
+
+        return ResponseEntity.ok().header("Content-Type","application/json").body(dto);
     }
-
-
 
 
 }

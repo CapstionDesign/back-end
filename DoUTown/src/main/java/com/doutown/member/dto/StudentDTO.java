@@ -1,4 +1,4 @@
-package com.doutown.student.dto;
+package com.doutown.member.dto;
 
 import org.apache.ibatis.type.Alias;
 
@@ -9,17 +9,17 @@ public class StudentDTO {
     private String studentName;
     private String hakNumber;
     private Long memberNo;
-    private String departmentCode;
+    private DepartmentDTO departmentDTO;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(Long studentNo, String studentName, String hakNumber, Long memberNo, String departmentCode) {
+    public StudentDTO(Long studentNo, String studentName, String hakNumber, Long memberNo, DepartmentDTO departmentDTO) {
         this.studentNo = studentNo;
         this.studentName = studentName;
         this.hakNumber = hakNumber;
         this.memberNo = memberNo;
-        this.departmentCode = departmentCode;
+        this.departmentDTO = departmentDTO;
     }
 
     public Long getStudentNo() {
@@ -54,12 +54,12 @@ public class StudentDTO {
         this.memberNo = memberNo;
     }
 
-    public String getDepartmentCode() {
-        return departmentCode;
+    public DepartmentDTO getDepartmentDTO() {
+        return departmentDTO;
     }
 
-    public void setDepartmentCode(String departmentCode) {
-        this.departmentCode = departmentCode;
+    public void setDepartmentDTO(DepartmentDTO departmentDTO) {
+        this.departmentDTO = departmentDTO;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class StudentDTO {
                 ", studentName='" + studentName + '\'' +
                 ", hakNumber='" + hakNumber + '\'' +
                 ", memberNo=" + memberNo +
-                ", departmentCode='" + departmentCode + '\'' +
+                ", departmentDTO=" + departmentDTO +
                 '}';
     }
 }

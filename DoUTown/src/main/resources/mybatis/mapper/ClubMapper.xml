@@ -11,4 +11,21 @@
         <result property="clubStatus" column="CLUB_STATUS"/>
     </resultMap>
 
+    <select id="find" resultType="ClubDTO" resultMap="ClubResult">
+        SELECT * FROM CLUB
+    </select>
+
+    <select id="findByNo" resultType="ClubDTO" parameterType="Long" resultMap="ClubResult">
+        SELECT * FROM CLUB WHERE CLUB_NO=#{clubNo}
+    </select>
+
+    <insert id="save" parameterType="ClubDTO">
+        INSERT INTO CLUB(OPEN_DATE,CLUB_NAME,CLUB_STATUS)
+        VALUES(now(),#{clubName},DEFAULT)
+    </insert>
+
+    <delete id="deleteClub" parameterType="Long">
+        DELETE FROM CLUB WHERE CLUB_NO=#{clubNo}
+    </delete>
+
 </mapper>
