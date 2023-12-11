@@ -63,8 +63,8 @@ public class MemberService {
     }
 
     //인중 후 학생 등록
-    public int saveStudent(Long memberNo) {
-        return memberMapper.saveStudent(memberNo);
+    public int saveStudent(StudentDTO dto) {
+        return memberMapper.saveStudent(dto);
     }
 
 }

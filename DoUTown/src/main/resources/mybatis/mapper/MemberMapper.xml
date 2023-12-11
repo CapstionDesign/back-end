@@ -77,7 +77,7 @@
             d.DEPARTMENT_NAME
         FROM MEMBER m JOIN STUDENT s ON m.MEMBER_NO=s.MEMBER_NO
                       JOIN DEPARTMENT d ON d.DEPARTMENT_CODE = s.DEPARTMENT_CODE
-        WHERE m.STUDENT_STATUS="Y" AND s.STUDENT_NO=#{studentNo}
+        WHERE m.STUDENT_STATUS="Y" AND m.MEMBER_NO=#{memberNo}
     </select>
 
     <!-- 회원가입 -->
@@ -98,10 +98,10 @@
 
     <!-- 인증 후 학생 테이블에 데이터 저장 -->
     <!-- 인증시 전달 받아야하는 데이터 memberNo,memberName -->
-    <insert id="saveStudent" parameterType="StudentDTO" useGeneratedKeys="true" keyProperty="studentNo">
+    <insert id="saveStudent" parameterType="StudentDTO">
         INSERT INTO
             STUDENT(STUDENT_NAME,HAK_NUMBER,MEMBER_NO,DEPARTMENT_CODE)
-        VALUES(#{sutdentName},#{hakNumber},#{memberNo},#{departmentCode})
+        VALUES(#{studentName},#{hakNumber},#{memberNo},"C")
     </insert>
 
 </mapper>

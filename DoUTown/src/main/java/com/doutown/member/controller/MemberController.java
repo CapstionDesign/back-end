@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @Api(tags = {"01.회원 및 학생"}, description = "회원 관련 서비스")
 public class MemberController {
 
@@ -65,15 +65,17 @@ public class MemberController {
     //인증 후 학생 테이블에 등록
     @PostMapping("/members/student/{memberNo}")
     @ApiOperation(value = "인증된 회원 정보를 학생으로 등록")
-    public ResponseEntity<MemberDTO> insertStudent(@PathVariable Long memberNo, @ModelAttribute MemberDTO dto) {
+    public ResponseEntity<MemberDTO> insertStudent(@PathVariable Long memberNo, @ModelAttribute StudentDTO dto) {
 
         int affected = 0;
 
-        affected = memberService.saveStudent(memberNo);
+        affected = memberService.saveStudent(dto);
 
-        dto = memberService.findStudentByNo(memberNo);
+        MemberDTO memberDTO = new MemberDTO();
 
-        return ResponseEntity.ok().header("Content-Type", "application/json").body(dto);
+        memberDTO =  memberService.findStudentByNo(dto.getMemberNo());
+
+        return ResponseEntity.ok().header("Content-Type", "application/json").body(memberDTO);
     }
 
 
