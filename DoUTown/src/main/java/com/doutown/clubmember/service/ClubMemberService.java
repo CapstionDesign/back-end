@@ -15,8 +15,19 @@ public class ClubMemberService {
         this.clubMemberMapper = clubMemberMapper;
     }
 
-    public List<ClubMemberDTO> find(){
-        return clubMemberMapper.find();
+    //특정 동아리 회원 전체 조회 - status가 Y인 회원
+    public List<ClubMemberDTO> find(Long clubNo){
+        return clubMemberMapper.find(clubNo);
+    }
+
+    //동아리 가입 신청
+    public int save(ClubMemberDTO dto) {
+        return clubMemberMapper.save(dto);
+    }
+
+    //동아리 가입 승인
+    public int update(Long studentNo) {
+        return clubMemberMapper.updateClubMember(studentNo);
     }
 
 }

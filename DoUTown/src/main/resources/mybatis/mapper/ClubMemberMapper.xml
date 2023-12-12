@@ -5,30 +5,33 @@
 <mapper namespace="com.doutown.clubmember.dao.ClubMemberMapper">
 
     <resultMap id="ClubMemberResult" type="ClubMemberDTO">
-        <id property="studentNo" column="STUDENT_NO"/>
+        <id property="clubMemberNo" column="CLUBMEMBERNO"/>
+        <result property="studentNo" column="STUDENT_NO"/>
         <result property="clubNo" column="CLUB_NO"/>
         <result property="clubGrade" column="CLUB_GRADE"/>
         <result property="joinDate" column="JOIN_DATE"/>
         <result property="selfintro" column="SELFINTRO"/>
-
-        <association property="studentDTO" javaType="com.doutown.member.dto.StudentDTO">
-            <id property="studentNo" column="STUDENT_NO"/>
-            <result property="studentName" column="STUDENT_NAME"/>
-            <result property="hakNumber" column="HAK_NUMBER"/>
-            <result property="memberNo" column="MEMBER_NO"/>
-        </association>
+        <result property="status" column="STATUS"/>
     </resultMap>
 
+    <!-- 특정 동아리의 동아리원 목록 조회 -->
     <select id="find" resultType="ClubMemberDTO" resultMap="ClubMemberResult">
-        SELECT * FROM CLUB_MEMBER
+        SELECT * FROM CLUB_MEMBER WHERE STATUS="Y" AND CLUB_NO=#{clubNo}만
     </select>
 
+    <!-- 특정 동아리의 동아리원 상세 조회 -->
     <select id="findByNo" resultType="ClubMemberDTO" parameterType="Long" resultMap="ClubMemberResult">
-        SELECT * FROM CLUB_MEMBER WHERE STUDENT_NO=#{studentNo}
+        SELECT * FROM CLUB_MEMBER WHERE STATUS="Y" AND CLUB_NO=#{clubNo} AND STUDENT_NO=#{studentNo}
     </select>
 
+    <!-- 동아리 가입 신청 -->
     <insert id="save" parameterType="ClubMemberDTO">
-        INSERT INTO CLUB_MEMBER VALUES(#{studentNo}, #{clubNo}, DEFAULT)
+        INSERT INTO CLUB_MEMBER(STUDENT_NO,CLUB_NO,CLUB_GRADE,JOIN_DATE,SELFINTRO,STATUS) VALUES(#{studentNo}, #{clubNo}, DEFAULT, now(),#{selfintro},DEFAULT)
     </insert>
+
+    <!-- 동아리 가입 승인 -->
+    <update id="updateClubMember" parameterType="Long">
+        UPDATE CLUB_MEMBER SET STATUS="Y" WHERE STUDENT_NO=#{studentNo}
+    </update>
 
 </mapper>
