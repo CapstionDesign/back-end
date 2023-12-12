@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:8080")
 @Api(tags = {"01.회원 및 학생"}, description = "회원 관련 서비스")
 public class MemberController {
 
@@ -27,36 +27,11 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<String> login(HttpSession session, @RequestBody MemberDTO dto){
-
-        boolean isMember = false;
-
-        isMember = memberService.isLogin(dto);
-
-        if (isMember == true) {
-            session.setAttribute("memberId", dto.getMemberId());
-            return ResponseEntity.ok("로그인 성공");
-        }
-        else {
-            return ResponseEntity.ok("로그인 실패");
-        }
-    }
-
-    @GetMapping("/logout")
-    public ResponseEntity<String> logout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-
-        if (session != null) {
-            session.invalidate();
-        }
-        return ResponseEntity.ok("로그아웃 성공");
-    }
-
     //회원 전체 목록 조회
     @GetMapping("/members")
     @ApiOperation(value = "회원 전체 전체 조회", notes = "일반 및 학생 회원 모두 조회")
     public List<MemberDTO> findMemberAll() {
+
         return memberService.findMemberAll();
     }
 
@@ -91,10 +66,12 @@ public class MemberController {
     }
 
     //인증 후 학생 테이블에 등록
-    @PostMapping("/members/student/{memberNo}")
+    @PostMapping("/members/students/{memberNo}")
     @ApiOperation(value = "인증된 회원 정보를 학생으로 등록")
     public ResponseEntity<MemberDTO> insertStudent(@PathVariable Long memberNo, @ModelAttribute StudentDTO dto) {
 
+
+        System.out.println("ddddddddd");
         int affected = 0;
 
         affected = memberService.saveStudent(dto);
