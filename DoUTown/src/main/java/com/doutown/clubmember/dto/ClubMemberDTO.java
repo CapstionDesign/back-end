@@ -9,25 +9,33 @@ import java.sql.Date;
 @Alias("ClubMemberDTO")
 public class ClubMemberDTO {
 
+    private Long clubMemberNo;
     private Long studentNo;
     private Long clubNo;
     private String clubGrade;
     private Date joinDate;
     private String selfintro;
-
-    private StudentDTO studentDTO;
-
+    private String status;
 
     public ClubMemberDTO() {
     }
 
-    public ClubMemberDTO(Long studentNo, Long clubNo, String clubGrade, Date joinDate, String selfintro, StudentDTO studentDTO) {
+    public ClubMemberDTO(Long clubMemberNo, Long studentNo, Long clubNo, String clubGrade, Date joinDate, String selfintro, String status) {
+        this.clubMemberNo = clubMemberNo;
         this.studentNo = studentNo;
         this.clubNo = clubNo;
         this.clubGrade = clubGrade;
         this.joinDate = joinDate;
         this.selfintro = selfintro;
-        this.studentDTO = studentDTO;
+        this.status = status;
+    }
+
+    public Long getClubMemberNo() {
+        return clubMemberNo;
+    }
+
+    public void setClubMemberNo(Long clubMemberNo) {
+        this.clubMemberNo = clubMemberNo;
     }
 
     public Long getStudentNo() {
@@ -70,23 +78,24 @@ public class ClubMemberDTO {
         this.selfintro = selfintro;
     }
 
-    public StudentDTO getStudentDTO() {
-        return studentDTO;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStudentDTO(StudentDTO studentDTO) {
-        this.studentDTO = studentDTO;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "ClubMemberDTO{" +
-                "studentNo=" + studentNo +
+                "clubMemberNo=" + clubMemberNo +
+                ", studentNo=" + studentNo +
                 ", clubNo=" + clubNo +
                 ", clubGrade='" + clubGrade + '\'' +
                 ", joinDate=" + joinDate +
                 ", selfintro='" + selfintro + '\'' +
-                ", studentDTO=" + studentDTO +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

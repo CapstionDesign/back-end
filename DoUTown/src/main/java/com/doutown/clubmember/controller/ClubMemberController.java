@@ -3,11 +3,9 @@ package com.doutown.clubmember.controller;
 import com.doutown.clubmember.dto.ClubMemberDTO;
 import com.doutown.clubmember.service.ClubMemberService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +21,23 @@ public class ClubMemberController {
         this.clubMemberService = clubMemberService;
     }
 
-    @GetMapping("/clubmembers")
-    public List<ClubMemberDTO> find(){
-        return clubMemberService.find();
+    @GetMapping("/clubmembers/{clubNo}")
+    @ApiOperation(value = "동아리 회원 전체 전체 조회")
+    public List<ClubMemberDTO> find(@PathVariable Long clubNo){
+        return clubMemberService.find(clubNo);
     }
+
+    @PostMapping("/clubmembers")
+    @ApiOperation(value = "동아리 신청")
+    public int save(ClubMemberDTO dto){
+        return clubMemberService.save(dto);
+    }
+
+    @PutMapping("/clubmembers/{studentNo}")
+    @ApiOperation(value = "동아리 가입 승인")
+    public int update(@PathVariable Long studentNo) {
+        return clubMemberService.update(studentNo);
+    }
+
 
 }
