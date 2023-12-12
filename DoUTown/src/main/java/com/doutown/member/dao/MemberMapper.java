@@ -11,7 +11,7 @@ import java.util.Map;
 public interface MemberMapper {
 
     //회원인지 확인하여 로그인 처리
-    boolean findByMember(Map map);
+    boolean findByMember(MemberDTO dto);
 
     //회원가입
     int saveMember(MemberDTO dto);

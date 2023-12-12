@@ -19,8 +19,8 @@ public class MemberService {
     }
 
     //로그인 확인 로직
-    public boolean isLogin(Map map) {
-        return memberMapper.findByMember(map);
+    public boolean isLogin(MemberDTO dto) {
+        return memberMapper.findByMember(dto);
     }
 
     //회원가입
