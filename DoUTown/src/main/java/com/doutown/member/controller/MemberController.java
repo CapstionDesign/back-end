@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,32 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<String> login(HttpSession session, @RequestBody MemberDTO dto){
+
+        boolean isMember = false;
+
+        isMember = memberService.isLogin(dto);
+
+        if (isMember == true) {
+            session.setAttribute("memberId", dto.getMemberId());
+            return ResponseEntity.ok("로그인 성공");
+        }
+        else {
+            return ResponseEntity.ok("로그인 실패");
+        }
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if (session != null) {
+            session.invalidate();
+        }
+        return ResponseEntity.ok("로그아웃 성공");
     }
 
     //회원 전체 목록 조회

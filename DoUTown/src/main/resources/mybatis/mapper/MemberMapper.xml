@@ -28,7 +28,7 @@
         <result property="departmentName" column="DEPARTMENT_NAME"/>
     </resultMap>
 
-    <select id="findByMember" parameterType="Map" resultType="boolean">
+    <select id="findByMember" parameterType="MemberDTO" resultType="boolean">
         SELECT COUNT(*) FROM member WHERE MEMBER_ID=#{memberId} AND MEMBER_PASS=#{memberPass}
     </select>
 
