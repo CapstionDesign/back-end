@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin
 @Api(tags = {"01.회원 및 학생"}, description = "회원 관련 서비스")
 public class MemberController {
 

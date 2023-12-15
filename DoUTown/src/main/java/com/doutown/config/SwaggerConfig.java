@@ -11,9 +11,10 @@ import springfox.documentation.service.VendorExtension;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 //http://localhost:8080/swagger-ui/
 @Configuration
-//@EnableSwagger2
+@EnableSwagger2
 public class SwaggerConfig {
 
 	@Bean
@@ -37,6 +38,7 @@ public class SwaggerConfig {
 				.contact(new Contact("Your Name", "http://doutown.com", "your.email@example.com"))
 				.license("Apache License Version 2.0")
 				.licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
+				.extensions(new Vector<VendorExtension>())
 				.build();
 	}
 }
